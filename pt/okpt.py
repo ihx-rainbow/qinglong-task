@@ -9,7 +9,8 @@ import requests
 import re
 import random
 import time
-from utils import notify
+import notify
+
 
 def checkin():
     if os.getenv("OKPT_COOKIE"):
