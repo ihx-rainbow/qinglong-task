@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-name: okpt checkin
+name: okpt 签到
 cron: 28 9 * * *
 """
 import os
@@ -9,7 +9,7 @@ import requests
 import re
 import random
 import time
-from util import notify
+from utils import notify
 
 def checkin():
     if os.getenv("OKPT_COOKIE"):
