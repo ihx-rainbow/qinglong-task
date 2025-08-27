@@ -9,7 +9,7 @@ import requests
 import re
 import random
 import time
-from utils import notify
+import send_notify as notify
 
 
 def checkin():
