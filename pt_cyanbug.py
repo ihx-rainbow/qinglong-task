@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-name: okpt 签到
+name: 大青虫签到
 cron: 28 9 * * *
 """
 import os
@@ -9,14 +9,14 @@ import requests
 import re
 import random
 import time
-from ..utils import notify
+import notify
 
 
 def checkin():
-    if os.getenv("OKPT_COOKIE"):
-        cookie = os.getenv("OKPT_COOKIE")
+    if os.getenv("CYANBUG_COOKIE"):
+        cookie = os.getenv("CYANBUG_COOKIE")
     else:
-        print("OKPT_COOKIE environment variable not set")
+        print("CYANBUG_COOKIE environment variable not set")
         return
 
     headers = {
@@ -34,7 +34,7 @@ def checkin():
     }
 
     response = requests.get(
-        f"https://www.okpt.net/attendance.php",
+        f"https://cyanbug.net/attendance.php",
         headers=headers,
     )
     text = response.text
@@ -42,11 +42,11 @@ def checkin():
         # 已连续签到 <b>39</b> 天，本次签到获得 <b>3900</b> 个魔力值
         checkin_day = re.findall(r"已连续签到 <b>(\d+)</b> 天", text)
         magic_count = re.findall(r"本次签到获得 <b>(\d+)</b> 个魔力值", text)
-        print(f"okpt 签到成功！连续签到: {checkin_day} 天, 获得魔力值: {magic_count}")
-        notify.send('okpt 签到成功！', f'连续签到: {checkin_day} 天, 获得魔力值: {magic_count}')
+        print(f"cyanbug 签到成功！连续签到: {checkin_day} 天, 获得魔力值: {magic_count}")
+        notify.send('cyanbug 签到成功！', f'连续签到: {checkin_day} 天, 获得魔力值: {magic_count}')
     else:
-        print(f"okpt 签到失败，状态码: {response.status_code}, 错误信息: {response.text}")
-        notify.send('okpt 签到失败！', 'okpt 签到失败！')
+        print(f"cyanbug 签到失败，状态码: {response.status_code}, 错误信息: {response.text}")
+        notify.send('cyanbug 签到失败！', 'cyanbug 签到失败！')
 
 
 def main():
