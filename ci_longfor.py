@@ -63,7 +63,7 @@ def checkin(token):
                 else:
                     # 今天已经签过到了
                     print("龙湖天街今天已经签过到了")
-                    notify.send('龙湖天街签到', '今天已经签过到了')
+                    notify.send('龙湖天街签到重复！', '今天已经签过到了')
             elif code == "801001":
                 # 登录已过期
                 print(f"龙湖天街签到失败：{message}")
